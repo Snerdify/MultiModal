@@ -1,0 +1,8 @@
+jtype: SentenceEncoder
+py_modules:
+  - executor.py
+metas:
+  name: SentenceEncoder
+  description: Sentence Encoder encodes sentences
+  url: 
+  keywords: ['jina']
