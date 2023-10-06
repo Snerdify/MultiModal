@@ -1,6 +1,27 @@
+
+#jtype: Deployment
+# with adds additional config needed for deployment
+#with:
+# below line specifies the executor that will be used for deployment
+  #uses: TextToImage
+  #py_modules:
+  #  - text_to_image.py # name of the module containing your Executor
+  # makes sure that deployment is fully initialized and ready to process before continuing
+  #timeout_ready: -1
+
+
+
+# updated yaml file to include 2 replicas and dynamic batching
+# also added GPU support via CUDA_VISIBLE_DEVICES
+# dynamic batching allows requests to be bunched together before being sent to the executor
 jtype: Deployment
 with:
-  uses: TextToImage
-  py_modules:
-    - text_to_image.py # name of the module containing your Executor
-  timeout_ready: -1
+    timeout_ready:-1
+    uses: jinaai://jina-ai/TextToImage
+    env:
+        CUDA_VISIBLE_DEVICES: RR
+    replicas: 2
+    uses_dynamic_batching:
+      /default:
+        preferred_batch_size : 10
+        timeout: 200
