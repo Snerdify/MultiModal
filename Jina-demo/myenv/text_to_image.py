@@ -6,7 +6,7 @@ from jina import Executor , requests
 # a single document or a datapoint
 # anydocarray is an array of documents
 # Doclist is a implementation of docarry and it is a python list of Basedocs
-from docarray import BaseDoc , Doclist
+from docarray import BaseDoc , DocList
 
 # imagedoc is derive from basedoc and is a document for handling images 
 # imagedoc can contain imagetensor , imageurl , anyembedding , imagebytes 
@@ -40,7 +40,7 @@ class TextToImage(Executor):
     # the 2nd parameter indicates a list of documents of type imageprompts
     # -> specifies the return type of the function
     # Doclist[Imagedoc] indicates that function is supposed to return a list of documents of type imagedoc
-    def generate_images(self, docs:Doclist[ImagePrompt],**kwargs)-> Doclist[ImageDoc]:
+    def generate_images(self, docs:DocList[ImagePrompt],**kwargs)-> DocList[ImageDoc]:
         # below line generates images based on text , using a pretrained model pipeline
         # takes a list of text prompts from the docs , pass them through a model
         # and obtain a list of images

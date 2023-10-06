@@ -1,0 +1,6 @@
+jtype: Deployment
+with:
+  uses: TextToImage
+  py_modules:
+    - text_to_image.py # name of the module containing your Executor
+  timeout_ready: -1
