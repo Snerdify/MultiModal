@@ -8,7 +8,7 @@ from sentence_transformers import SentenceTransformer
 
 
 # document
-class MyBaseDoc(BaseDoc):
+class MyDoc(BaseDoc):
     txt:str = ''
     embedding : Optional[Anytensor[5]]= None
 
@@ -17,7 +17,9 @@ class MyBaseDoc(BaseDoc):
 class SentenceEncoder(Executor):
     def __init__(self , device: str= 'cpu',  *args , **kwargs):
         super().__init__(*args , **kwargs)
-        
+        self.model = SentenceTransformer('all-MiniLM-L6-v2' , device = device)
+        self.model.to(device)
+
 
 
 
@@ -25,5 +27,10 @@ class SentenceEncoder(Executor):
 
     
     @requests
-    def foo(self, docs, **kwargs):
-        pass
+    def encode( self , docs: DocList[MyDoc] , **kwargs) -> DocList[MyDoc]:
+    # add text based embeddings to all documents
+        with torch.inference_model():
+            embeddings = self.model.encode(docs.texts , batch_size =32) 
+            docs.embeddings = embeddings 
+
+
