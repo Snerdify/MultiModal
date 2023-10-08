@@ -5,4 +5,11 @@
  🦩This repo contains development progress of my multimodal applications created using Flamingo and JINA .
 
  🔨WIP. Will explore more Frameworks.
+
+ Examples of Multimodal Tasks:
+ 1. Table Question Answering
+ 2. OCR
+ 3. Info extraction from scanned documents
+ 4. Video Classification / Summarization
+ 5. Visual question Answering
  
